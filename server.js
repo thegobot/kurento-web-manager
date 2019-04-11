@@ -126,7 +126,7 @@ class KurentoManager{
                 error("нет соединения c <strong>" + wsurl + "</strong>");
             }
 
-            log("host connected!", host);
+            log("kurento server connected", host);
 
         });
 
@@ -368,5 +368,8 @@ log("set default host", defHost);
 kurentoManager = new KurentoManager(servers);
 kurentoManager.setCurrentServer(defHost);
 
-app.listen(httpPort, () => log(`Kurento manager listening on port ${httpPort}!`));
+app.listen(httpPort, () => {
+    log(`Kurento manager listening on http port ${httpPort}`)
+    log(`Open in browser: http://example.com:${httpPort}`)
+});
 
