@@ -1,0 +1,18 @@
+mixin modal(opt)
+    div(class="modal", class=opt.cls)
+        div(class="modal-dialog", class=opt.clsDialog)
+            div(class="modal-content")
+                div(class="modal-header")
+                    h5(class="modal-title")= opt.title
+
+                    button(class="close", data-dismiss="modal", type="button")
+                        span(aria-hidden="true")= "x"
+
+
+                div(class="modal-body")
+
+                    block
+
+                div(class="modal-footer")
+                    button.btn.btn-secondary(data-dismiss="modal", type="button")= "Close"
+                    button.btn.btn-primary.submit-trigger(type="submit",class={"d-none": !opt.form})= "Save"

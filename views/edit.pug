@@ -1,0 +1,8 @@
+include modal.mixin.pug
++modal({title: "Edit item", cls: "ajax", form: true})
+
+    form(class="ajax", action="/api/saveObject")
+        input(type="hidden", name="id", value=element.id)
+        div.form-group
+            label= "Name"
+            input.form-control(value=element.name, name="name")

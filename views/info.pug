@@ -1,0 +1,47 @@
+include modal.mixin.pug
++modal({title: "Info item", clsDialog: "modal-lg"})
+
+    table.table
+        tr
+            td= "ID"
+            td= element.id
+        tr
+            td= "Name"
+            td= element.name
+
+        tr
+            td= "Type"
+            td= element.className
+
+        tr
+            td= "Date create"
+            td= element.time.format("dd.mm.yyyy HH:MM:ss")
+
+        tr
+            td= "Connection state"
+            td
+                i(class="fa fa-plug mr-1", class={"text-success": element.state == "CONNECTED", "text-danger": element.state != "CONNECTED"})
+                != element.state || "&mdash;"
+
+        tr
+            td= "Media state"
+            td
+                i(class="fa fa-plug mr-1", class={"text-success": element.mediaState == "CONNECTED", "text-danger": element.mediaState != "CONNECTED"})
+                != element.mediaState || "&mdash;"
+
+        tr
+            td= "Ices"
+            td
+                each pair in element.icesPair
+                    div.alert.alert-secondary
+                        div
+                            i(class="fa fa-plug", title="Connection state", class={"text-success": element.isIceConnected(pair), "text-danger": !element.isIceConnected(pair)})
+                            = " componentID: " + pair.componentID + ", "
+                            = "streamId: " + pair.streamID
+                        div(title="localCandidate(Server)", class="font-weight-bold")= "L: " + pair.localCandidate
+                        div(title="remoteCandidate(Client)")= "R: " + pair.remoteCandidate
+
+
+        tr
+            td= "Childs count"
+            td= element.childsCount

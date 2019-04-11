@@ -1,0 +1,14 @@
+.objects .sub:not(.empty){
+    margin: 1rem 0rem 1rem 1rem;
+    background-color: #f8f8f8;
+    padding: 1rem;
+}
+
+.objects .item{
+    margin: 0.5rem 0;
+}
+
+.objects .item .minus,
+.objects .item .plus{
+    cursor: pointer;
+}

@@ -1,0 +1,49 @@
+mixin objects(items)
+    div(class="objects")
+
+        each item in items
+            div(class="row item no-gutters align-items-center flex-nowrap", data-object=item.id)
+                div(class="col-auto")
+                    i(class="fa fa-plus-square-o plus loaderEl")
+                    i(class="fa fa-minus-square-o minus d-none loaderEl")
+                div(class="col-auto px-2")
+
+                    button(class="btn btn-secondary btn-sm py-1 mr-2 info", title="Extended info")
+                        i(class="fa fa-info-circle")
+                    button(class="btn btn-secondary btn-sm py-1 mr-2 remove", title="Remove")
+                        i(class="fa fa-trash")
+                    button(class="btn btn-secondary btn-sm py-1 edit", title="Edit")
+                        i(class="fa fa-pencil")
+
+                div(class="col")
+                    a(href="/item/" + item.id, class="loaderEl text-truncate d-inline-block", style="max-width: 250px", title=item.id)= ("(" + item.childsCount +") "+ item.name)
+
+
+                if(item.className == "WebRtcEndpoint")
+
+                    div(class="col-auto px-2")
+                        = item.stats ? templateGlobal.utils.bytes(item.stats.received) : 0
+                        = " / "
+                        = item.stats ? templateGlobal.utils.bytes(item.stats.sended) : 0
+
+                    div(class="col-auto px-2")
+                        i(class="fa fa-plug", title="Connection state", class={"text-success": item.state == "CONNECTED", "text-danger": item.state != "CONNECTED"})
+                    div(class="col-auto px-2")
+                        i(class="fa fa-plug", title="Media state", class={"text-success": item.mediaState == "CONNECTED", "text-danger": item.mediaState != "CONNECTED"})
+                    div(class="col-auto px-2")
+
+                        span(title="Ices")
+                            i.fa.fa-rss(class={"text-success": item.icesStateConnected(), "text-danger": !item.icesStateConnected()})
+                            span(class="badge badge-light")= item.icesState.length
+
+
+
+                div(class="col-auto ml-2")
+                   small(class="text-muted", title=item.time.format("dd.mm.yyyy HH:MM:ss"))= item.durationHumman
+
+
+            div(class="sub empty")
+                i(class="loader fa d-none fa-spinner fa-spin fa-fw")
+                div(class="data")
+
+

@@ -1,0 +1,27 @@
+html
+  head
+    title= title
+
+    link(rel='stylesheet', href='/bootstrap/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/css/main.css')
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+    script(src="/js/jquery.form.min.js")
+    script(src="/bootstrap/bootstrap.min.js")
+    script(src="/js/main.js")
+
+  body
+
+    div(class="container")
+
+      div(class="btn-group my-2", role="group")
+        each val in templateGlobal.servers
+          a(href="/host/"+val.host, class=["btn btn-secondary"], class={active: host && host.host == val.host})= val.host
+
+
+      h1= header
+
+      div(class="content my-2")
+        block content
+
+
